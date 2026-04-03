@@ -1,0 +1,14 @@
+D:\Magic-8\bin\Debug\net10.0\Magic8Ball.exe
+D:\Magic-8\bin\Debug\net10.0\Magic8Ball.deps.json
+D:\Magic-8\bin\Debug\net10.0\Magic8Ball.runtimeconfig.json
+D:\Magic-8\bin\Debug\net10.0\Magic8Ball.dll
+D:\Magic-8\bin\Debug\net10.0\Magic8Ball.pdb
+D:\Magic-8\obj\Debug\net10.0\Magic8Ball.GeneratedMSBuildEditorConfig.editorconfig
+D:\Magic-8\obj\Debug\net10.0\Magic8Ball.AssemblyInfoInputs.cache
+D:\Magic-8\obj\Debug\net10.0\Magic8Ball.AssemblyInfo.cs
+D:\Magic-8\obj\Debug\net10.0\Magic8Ball.csproj.CoreCompileInputs.cache
+D:\Magic-8\obj\Debug\net10.0\Magic8Ball.dll
+D:\Magic-8\obj\Debug\net10.0\refint\Magic8Ball.dll
+D:\Magic-8\obj\Debug\net10.0\Magic8Ball.pdb
+D:\Magic-8\obj\Debug\net10.0\Magic8Ball.genruntimeconfig.cache
+D:\Magic-8\obj\Debug\net10.0\ref\Magic8Ball.dll
