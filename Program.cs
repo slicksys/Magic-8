@@ -1,14 +1,44 @@
 using System;
+using System.Text.RegularExpressions;
 
 class Magic8Ball
 {
     static readonly string[] Responses =
     {
         // Positive
+        "I have no idea",
+      //silly pharases that could answer non binary questions
+        "The cake is a lie.",
+        "42.",
+        "I am not sure, but I think the answer is somewhere between 1 and 10.",
+        "The answer is blowing in the wind.",
+        "The answer is hidden in the stars.",
+        "The answer is written in the sand.",
+        "The answer is whispered by the trees.",
+        "The answer is reflected in the water.",
+        "The answer is carried by the birds.",
+        // Neutral
+        "Reply hazy, try again.",
+        "Ask again later.",
+        "Better not tell you now.",
+        "Cannot predict now.",
+        "Concentrate and ask again.",
+        // Negative
+        "Don't count on it.",
+        "My reply is no.",
+        "My sources say no.",
+        "Outlook not so good.",
+        "Very doubtful."
+
+    };
+
+    static readonly string[] BinaryResponses =
+    {
+        // Positive
         "You better fucking believe it.",
         "Don't be an asshole, of course it is.",
         "Why are you asking such stupid questions? Yes.",
-        "Ok I'mseriously wasting time here, right?",
+        "Ok I'm seriously wasting time here, right?",
         "It is certain.",
         "It is decidedly so.",
         "Without a doubt.",
@@ -34,11 +64,7 @@ class Magic8Ball
         "I don't know, go ask someone who is really interested in giving you an answer.",
         "I doubt it, your feet smell awful actually, do you use SOAP or Json?",
         "Your database is so fat it blocks the sun.",
-
-
-
     };
-
     static readonly Random Rng = new Random();
 
     static void DrawBall(string response)
@@ -76,6 +102,26 @@ class Magic8Ball
         if (idx < 15)  return ConsoleColor.Yellow;
         return ConsoleColor.Red;
     }
+   
+    private static readonly string[] BinaryStarters = 
+    { 
+        "is", "are", "was", "were", "do", "does", "did", 
+        "have", "has", "had", "can", "could", "will", 
+        "would", "should", "may", "might", "must", "am" 
+    };
+
+    public static bool IsBinaryQuestion(string question)
+    {
+        if (string.IsNullOrWhiteSpace(question)) return false;
+        string cleanQuestion = question.Trim().ToLower();
+        if (!cleanQuestion.EndsWith("?")) return false;
+        Match match = Regex.Match(cleanQuestion, @"^[a-z]+");
+        if (!match.Success) return false;
+        string firstWord = match.Value;
+        return Array.Exists(BinaryStarters, element => element == firstWord);
+    }
+
+
 
     static void Main()
     {
@@ -96,6 +142,7 @@ class Magic8Ball
             Console.ResetColor();
 
             string? input = Console.ReadLine();
+
 
             if (input == null) break;
             input = input.Trim();
@@ -122,8 +169,16 @@ class Magic8Ball
             System.Threading.Thread.Sleep(1200);
             Console.ResetColor();
 
-            string answer = Responses[Rng.Next(Responses.Length)];
-
+            var answer = "";
+            if (!IsBinaryQuestion(input ?? ""))
+            {
+                answer = Responses[Rng.Next(Responses.Length)];
+            }
+            else
+            {
+                
+                answer = BinaryResponses[Rng.Next(BinaryResponses.Length)];
+            }
             DrawBall(answer);
 
             Console.ForegroundColor = ResponseColor(answer);
